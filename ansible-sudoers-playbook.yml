@@ -1,0 +1,9 @@
+---
+- hosts: all
+  tasks:
+    - lineinfile:
+        path: /etc/sudoers.d/user
+        state: present
+        regexp: "^{{USER_TO_UPDATE}}"
+        line: "{{USER_TO_UPDATE}} ALL=(ALL) NOPASSWD: ALL"
+        validate: 'visudo -cf %s'
